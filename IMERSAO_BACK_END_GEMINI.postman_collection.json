@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "af0f2932-07b3-4a57-8cd3-dbd494914f6b",
+		"name": "IMERSAO_BACK_END_GEMINI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2467376",
+		"_collection_link": "https://speeding-moon-2678.postman.co/workspace/OWF~bd33b683-5165-49ae-8db9-f9be1c354466/collection/2467376-af0f2932-07b3-4a57-8cd3-dbd494914f6b?action=share&source=collection_link&creator=2467376"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imagem",
+							"type": "file",
+							"src": "/C:/Users/walte/Pictures/Screenshots/Captura de tela 2023-03-01 180330.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/upload/id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"alt\": \"Teste de descrição em preto e branco\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/upload/6740dc2f8c780719206bda1a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"upload",
+						"6740dc2f8c780719206bda1a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/upload/id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/upload/673fa383713b44d199bd262d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"upload",
+						"673fa383713b44d199bd262d"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

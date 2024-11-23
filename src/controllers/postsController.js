@@ -1,5 +1,5 @@
 import fs from "fs";
-import { alterarPostDB, buscarPostsDB, inserirPostDB } from "../models/postsModel.js";
+import { alterarPostDB, buscarPostsDB, excluirPostDB, inserirPostDB } from "../models/postsModel.js";
 import gerarDescricaoComGemini from "../services/germiniService.js";
 
 export async function buscarPosts(req, res) {
@@ -43,6 +43,23 @@ export async function alterarPost(req, res) {
             alt: req.body.alt,
         };
         const retorno = await alterarPostDB(id, post);
+        res.status(200).json(retorno);
+    } catch (erro) {
+        console.error(erro.message);
+        res.status(500).json({ "Erro": "Falha na requisição" });
+    }
+}
+
+export async function excluirPost(req, res) {
+    const id = req.params.id;
+    const imagem = `uploads/${id}.png`
+    try {
+        await fs.unlink(imagem, (err) => {
+            if (err) {
+                res.status(500).json({ "Erro": "Falha na requisição" });
+            }
+        })
+        const retorno = await excluirPostDB(id);
         res.status(200).json(retorno);
     } catch (erro) {
         console.error(erro.message);

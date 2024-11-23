@@ -1,4 +1,4 @@
-import "dotenv-config";
+import "dotenv/config";
 import { ObjectId } from "mongodb";
 import conectarAoBanco from "../config/dbConfig.js";
 
@@ -21,4 +21,11 @@ export async function alterarPostDB(id, post) {
     const colecao = db.collection("posts");
     const objID = ObjectId.createFromHexString(id);
     return colecao.updateOne({ _id: new ObjectId(objID) }, { $set: post });
+}
+
+export async function excluirPostDB(id, post) {
+    const db = conexao.db("owfsolucoes");
+    const colecao = db.collection("posts");
+    const objID = ObjectId.createFromHexString(id);
+    return colecao.deleteOne({ _id: new ObjectId(objID) });
 }
