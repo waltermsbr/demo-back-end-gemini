@@ -1,10 +1,16 @@
 import fs from "fs";
-import { alterarPostDB, buscarPostsDB, excluirPostDB, inserirPostDB } from "../models/postsModel.js";
+import { buscarPostsDB, buscarPostDB, alterarPostDB, excluirPostDB, inserirPostDB } from "../models/postsModel.js";
 import gerarDescricaoComGemini from "../services/germiniService.js";
 
 export async function buscarPosts(req, res) {
     const posts = await buscarPostsDB();
     res.status(200).json(posts);
+}
+
+export async function buscarPost(req, res) {
+    const id = req.params.id;
+    const post = await buscarPostDB(id);
+    res.status(200).json(post);
 }
 
 export async function inserirPost(req, res) {
@@ -33,16 +39,40 @@ export async function uploadImagem(req, res) {
 
 export async function alterarPost(req, res) {
     const id = req.params.id;
-    const urlImagem = `http://localhost:3000/${id}.png`;
     try {
-        const imgBuffer = fs.readFileSync(`uploads/${id}.png`);
-        const descricao = await gerarDescricaoComGemini(imgBuffer);
         const post = {
-            imgUrl: urlImagem,
-            descricao: descricao,
             alt: req.body.alt,
+            descricao: req.body.descricao,
         };
         const retorno = await alterarPostDB(id, post);
+        res.status(200).json(retorno);
+    } catch (erro) {
+        console.error(erro.message);
+        res.status(500).json({ "Erro": "Falha na requisição" });
+    }
+}
+
+export async function alterarPostGemini(req, res) {
+    console.log("1")
+    const id = req.params.id;
+    try {
+        const postAtual = await buscarPostDB(id);
+        //      var ext = postAtual.imgUrl.split(';')[0].match(/jpeg|png|gif/)[0];
+        //      var data = postAtual.imgUrl.replace(/^data:image\/\w+;base64,/, '');
+        //     var buffer = Buffer.from(data, 'base64');
+        console.log("2")
+
+        //    var imgBuffer = fs.writeFile("imagem." + ext, buffer);
+
+        console.log("3")
+
+
+        const descricao = await gerarDescricaoComGemini(postAtual.imgUrl);
+        const post = {
+            descricao: descricao
+        };
+        const retorno = await alterarPostDB(id, post);
+        retorno.descricao = descricao;
         res.status(200).json(retorno);
     } catch (erro) {
         console.error(erro.message);
@@ -54,11 +84,7 @@ export async function excluirPost(req, res) {
     const id = req.params.id;
     const imagem = `uploads/${id}.png`
     try {
-        await fs.unlink(imagem, (err) => {
-            if (err) {
-                res.status(500).json({ "Erro": "Falha na requisição" });
-            }
-        })
+        await fs.unlink(imagem)
         const retorno = await excluirPostDB(id);
         res.status(200).json(retorno);
     } catch (erro) {

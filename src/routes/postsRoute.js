@@ -1,7 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import cors from "cors";
-import { alterarPost, buscarPosts, excluirPost, inserirPost, uploadImagem } from '../controllers/postsController.js';
+import { buscarPosts, buscarPost, alterarPost, alterarPostGemini, excluirPost, inserirPost, uploadImagem } from '../controllers/postsController.js';
 
 const corsOptions = {
     origin: "http://localhost:8000",
@@ -23,9 +23,11 @@ const routes = (app) => {
     app.use(express.json());
     app.use(cors(corsOptions))
     app.get('/posts', buscarPosts);
+    app.get('/posts/:id', buscarPost);
     app.post('/posts', inserirPost);
     app.post('/upload', upload.single('imagem'), uploadImagem);
     app.put('/upload/:id', alterarPost);
+    app.put('/upload/gemini/:id', alterarPostGemini);
     app.delete('/upload/:id', excluirPost);
 }
 
