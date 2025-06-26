@@ -40,7 +40,6 @@
 # env
 
 - back-end:
-
   - Conteúdo:
     STRING_CONEXAO = "mongodb+srv://<conta>:<senha_usuario>@cluster0.wnuw8m8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     STRING_DATABASE = "db_posts"
@@ -48,6 +47,5 @@
     GEMINI_API_KEY = "<api_key>"
 
 - front-end
-
   - Conteúdo:
     API_URL = "http://localhost:3000/posts"
