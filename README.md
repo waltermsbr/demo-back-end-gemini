@@ -56,9 +56,21 @@
 - back-end:
 
   - Executar comando:
-    docker-compose up --build -d
+    - Google Cloud: docker-compose up --build -d
+    - Local: docker-compose -f docker-compose-local.yml up -d
 
 - front-end
 
   - Executar comando:
-    docker-compose up --build -d
+    - Google Cloud: docker-compose up --build -d
+    - Local: docker-compose -f docker-compose-local.yml up -d
+
+# google cloud
+
+- back-end:
+
+  - https://demo-back-end-gemini-328239708562.europe-west1.run.app
+
+- front-end:
+
+  - https://demo-front-end-gemini-328239708562.europe-west1.run.app

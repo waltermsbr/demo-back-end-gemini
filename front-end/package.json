@@ -25,6 +25,7 @@
   "contributors": [],
   "scripts": {
     "dev": "npx parcel --port 8000 index.html",
+    "prod": "npx parcel --port 8000 index.html",
     "test": ""
   },
   "dependencies": {

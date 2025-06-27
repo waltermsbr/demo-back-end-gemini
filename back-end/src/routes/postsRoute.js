@@ -3,8 +3,10 @@ import multer from 'multer';
 import cors from "cors";
 import { buscarPosts, buscarPost, alterarPost, alterarPostGemini, inserirPost, inserirPostGemini, excluirPost, uploadImagem } from '../controllers/postsController.js';
 
+const URL_CLIENT_ORIGEM = process.env.URL_CLIENT_ORIGEM;
+
 const corsOptions = {
-    origin: "http://localhost:8000",
+    origin: URL_CLIENT_ORIGEM,
     optionsSuccessStatus: 200
 }
 // Apenas em ambiente Windows
