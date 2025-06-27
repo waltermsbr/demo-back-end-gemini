@@ -18,7 +18,7 @@
 - Instalar:
   - npm install
 - Executar:
-  - node server.js
+  - npm run dev
 - Arquitetura:
   - NodeJS
 - URL:
@@ -40,6 +40,7 @@
 # env
 
 - back-end:
+
   - Conteúdo:
     STRING_CONEXAO = "mongodb+srv://<conta>:<senha_usuario>@cluster0.wnuw8m8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     STRING_DATABASE = "db_posts"
@@ -49,3 +50,15 @@
 - front-end
   - Conteúdo:
     API_URL = "http://localhost:3000/posts"
+
+# docker
+
+- back-end:
+
+  - Executar comando:
+    docker-compose up --build -d
+
+- front-end
+
+  - Executar comando:
+    docker-compose up --build -d

@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+ app:
+  build: .
+  image: demo-front-end-gemini:1.0
+  restart: always
+  container_name: demo-front-end-gemini
+  ports:
+   - '8000:8000'
+  volumes:
+   - .:/usr/src/app
+   - /usr/src/app/node_modules
+  environment:
+   - NODE_ENV=development
+  command: npm run dev
